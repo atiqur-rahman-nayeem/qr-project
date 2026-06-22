@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Scanner Form</title>
+</head>
+<body>
+  <h2>Submit Data</h2>
+
+  <input id="name" placeholder="Enter Name" />
+  <button onclick="sendData()">Submit</button>
+
+  <script>
+    function sendData() {
+      const name = document.getElementById("name").value;
+
+      fetch("YOUR_APPS_SCRIPT_URL", {
+        method: "POST",
+        body: JSON.stringify({ name: name }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.text())
+      .then(data => alert("Success: " + data))
+      .catch(err => alert("Error"));
+    }
+  </script>
+</body>
+</html>
